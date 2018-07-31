@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="mainPane" prefHeight="530.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shshmanager.Controller">
+    <children>
+      <BorderPane layoutY="4.0" prefHeight="310.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <MenuBar BorderPane.alignment="CENTER">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                        <MenuItem mnemonicParsing="false" onAction="#addDeviceMenuBtn" text="Add Device" />
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                        <MenuItem mnemonicParsing="false" onAction="#fetchAll" text="Fetch All" />
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+         <left>
+            <ListView fx:id="deviceList" prefHeight="200.0" prefWidth="180.0" BorderPane.alignment="CENTER" />
+         </left>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="shshListTable" prefHeight="250.0" prefWidth="620.0">
+                    <columns>
+                      <TableColumn fx:id="versionCol" prefWidth="99.0" text="Version" />
+                        <TableColumn fx:id="buildCol" prefWidth="118.0" text="Build" />
+                        <TableColumn fx:id="apnonceCol" text="Apnonce" />
+                        <TableColumn fx:id="dateCol" prefWidth="117.0" text="Fetch date" />
+                        <TableColumn fx:id="typeCol" prefWidth="74.0" text="Type" />
+                    </columns>
+                  </TableView>
+                  <HBox>
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="720.0">
+                           <children>
+                              <HBox prefHeight="25.0" prefWidth="470.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="100.0" text="Identifier">
+                                       <HBox.margin>
+                                          <Insets left="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="infoDeviceModel">
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="25.0" prefWidth="470.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="100.0" text="ECID">
+                                       <HBox.margin>
+                                          <Insets left="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="infoDeviceECID">
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="25.0" prefWidth="470.0">
+                                 <children>
+                                    <Label prefHeight="17.0" prefWidth="100.0" text="BoardConfig">
+                                       <HBox.margin>
+                                          <Insets left="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="infoDeviceBoardConfig">
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <Pane prefHeight="200.0" prefWidth="200.0" />
+                              <Label fx:id="versionLabel" text="Version">
+                                 <VBox.margin>
+                                    <Insets left="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox>
+                                 <children>
+                                    <CheckBox fx:id="versionCheckBox" mnemonicParsing="false" onAction="#versionCheckBoxHandler" selected="true" text="Use Latest Version">
+                                       <HBox.margin>
+                                          <Insets left="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                    <CheckBox fx:id="betaCheckBox" mnemonicParsing="false" text="Beta version">
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="5.0" />
+                                       </HBox.margin>
+                                    </CheckBox>
+                                 </children>
+                              </HBox>
+                              <HBox>
+                                 <children>
+                                    <TextField fx:id="versionField" disable="true" promptText="Version">
+                                       <HBox.margin>
+                                          <Insets left="5.0" top="5.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <TextField fx:id="buildIDField" disable="true" promptText="Build ID">
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="5.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <Label text="?">
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" />
+                                       </padding>
+                                       <tooltip>
+                                          <Tooltip text="Get the build ID for the iOS version from theiphonewiki.com/wiki/Beta_Firmware and paste it here" />
+                                       </tooltip>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children></VBox>
+                        <ImageView fx:id="infoDeviceImage" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets right="5.0" top="5.0" />
+                           </HBox.margin></ImageView>
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <CheckBox fx:id="apnonceCheckBox" mnemonicParsing="false" onAction="#apnonceCheckBoxHandler" text="Manually specify apnonce:">
+                           <VBox.margin>
+                              <Insets left="5.0" top="5.0" />
+                           </VBox.margin>
+                        </CheckBox>
+                        <TextField fx:id="apnonceField" disable="true" promptText="Apnonce">
+                           <VBox.margin>
+                              <Insets left="5.0" right="10.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <HBox prefHeight="27.0" prefWidth="200.0">
+                           <children>
+                              <Pane prefHeight="30.0" prefWidth="525.0" />
+                              <Button fx:id="getSHSH" mnemonicParsing="false" onAction="#go" text="Get SHSH" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+    </children>
+</AnchorPane>
